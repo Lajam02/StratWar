@@ -175,9 +175,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  range: 2
+  range: 0.8
   enemyteam: 
   damage: 2
+  facingRight: 0
   enemy: []
   maxHp: 5
   cdTimer: 1
@@ -242,7 +243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338829663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.24, y: -0.78, z: 0}
+  m_LocalPosition: {x: 5.94, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -388,6 +389,7 @@ MonoBehaviour:
   range: 2
   enemyteam: 
   damage: 2
+  facingRight: 0
   enemy: []
   maxHp: 180
   cdTimer: 1
@@ -452,7 +454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261686175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.02, y: 2.73, z: 0}
+  m_LocalPosition: {x: 8.06, y: 3.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -558,11 +560,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  range: 2
+  range: 0.8
   enemyteam: 
   damage: 2
+  facingRight: 0
   enemy: []
-  maxHp: 5
+  maxHp: 59
   cdTimer: 1
   animator: {fileID: 1954495496}
 --- !u!95 &1954495496

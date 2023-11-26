@@ -11,6 +11,7 @@ public class KnightsAi : MonoBehaviour
     [SerializeField] private string enemyteam;
     public int damage;
     private bool isAlive;
+    public bool facingRight;
 
     //combat
     [SerializeField] private GameObject[] enemy;
@@ -43,10 +44,14 @@ public class KnightsAi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (curentHp <= 0)
         {
             gameObject.tag = "Dead";
             //Destroy(gameObject);
+        }
+        else {
+            decideDirection();
         }
 
 
@@ -81,6 +86,7 @@ public class KnightsAi : MonoBehaviour
             }
             else
             {
+                animator.SetBool("attack", false);
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.fixedDeltaTime);
                 if (speed > 0)
                 {
@@ -96,14 +102,31 @@ public class KnightsAi : MonoBehaviour
 
     }
     
+    private void decideDirection()
+    {
+        Vector3 scale = transform.localScale;
+        if (target.transform.position.x < gameObject.transform.position.x) {
+            facingRight = true;
+                }
+        else
+        {
+            facingRight = false; 
+        }
+
+        scale.x = Mathf.Abs(scale.x) * (facingRight ? -1 : 1);
+        transform.localScale = scale;
+    }
+
     void DecideTeam()
     {
         if(gameObject.tag == "blueTeam")
         {
+            
             enemyteam = "redTeam";
         }
         else if(gameObject.tag == "redTeam")
         {
+            
             enemyteam = "blueTeam";
         }
     }
