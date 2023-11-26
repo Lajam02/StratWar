@@ -25,7 +25,7 @@ public class KnightsAi : MonoBehaviour
     [SerializeField] private float cdTimer;
     private float cd;
 
-    //[SerializeField] private Animator animator;
+    [SerializeField] private Animator animator;
 
 
 
@@ -53,16 +53,16 @@ public class KnightsAi : MonoBehaviour
         if (target.tag == "Dead")
         {
             enemy = null;
-            //animator.SetBool("attack", false);
+            animator.SetBool("attack", false);
             searchEnemy();
 
         }
 
         if (gameObject.tag == "Dead")
         {
-            //animator.SetBool("targetfound", false);
-            //animator.SetBool("attack", false);
-            //animator.SetBool("die", true);
+            animator.SetBool("targetfound", false);
+            animator.SetBool("attack", false);
+            animator.SetBool("die", true);
             isAlive = false;
         }
     }
@@ -74,7 +74,7 @@ public class KnightsAi : MonoBehaviour
         {
             if (Vector3.Distance(gameObject.transform.position, target.transform.position) < range)
             {
-                //animator.SetBool("targetfound", false);
+                animator.SetBool("targetfound", false);
                 Attack();
 
 
@@ -84,11 +84,11 @@ public class KnightsAi : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.fixedDeltaTime);
                 if (speed > 0)
                 {
-                    //animator.SetBool("targetfound", true);
+                    animator.SetBool("targetfound", true);
                 }
                 else if (speed <= 0)
                 {
-                    //animator.SetBool("targetfound", false);
+                    animator.SetBool("targetfound", false);
                 }
 
             }
@@ -129,7 +129,7 @@ public class KnightsAi : MonoBehaviour
     {
 
         haveAttacked = true;
-        //animator.SetBool("attack", true);
+        animator.SetBool("attack", true);
         if (haveAttacked == true)
         {
             cd -= Time.fixedDeltaTime;
