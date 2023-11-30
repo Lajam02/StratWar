@@ -6,32 +6,32 @@ public class KnightsAi : MonoBehaviour
 {
 
     //base info
-    [SerializeField] private int speed;
-    [SerializeField] private float range;
-    [SerializeField] private string enemyteam;
+     [SerializeField] protected private int speed;
+    [SerializeField] protected private float range;
+    [SerializeField] protected private string enemyteam;
     public int damage;
-    private bool isAlive;
-    public bool facingRight;
+    protected private bool isAlive;
+    [SerializeField] protected private bool facingRight;
 
     //combat
-    [SerializeField] private GameObject[] enemy;
-    private GameObject target;
-    private bool haveAttacked;
+    [SerializeField] protected private GameObject[] enemy;
+    protected private GameObject target;
+    protected private bool haveAttacked;
 
     //Hp
-    [SerializeField] private int maxHp;
-    private int curentHp;
+    [SerializeField] protected private int maxHp;
+    [SerializeField]  protected private int curentHp;
 
     // cooldown  
-    [SerializeField] private float cdTimer;
-    private float cd;
+    [SerializeField] protected private float cdTimer;
+    protected private float cd;
 
-    [SerializeField] private Animator animator;
+    [SerializeField] protected private Animator animator;
 
 
 
     // set all the base stats
-    void Start()
+    public virtual void Start()
     {
         DecideTeam();
         curentHp = maxHp;
@@ -42,7 +42,7 @@ public class KnightsAi : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         
         if (curentHp <= 0)
@@ -72,7 +72,7 @@ public class KnightsAi : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    public virtual  void FixedUpdate()
     {
 
         if (isAlive == true)
@@ -102,7 +102,7 @@ public class KnightsAi : MonoBehaviour
 
     }
     
-    private void decideDirection()
+    public virtual void decideDirection()
     {
         Vector3 scale = transform.localScale;
         if (target.transform.position.x < gameObject.transform.position.x) {
@@ -113,11 +113,11 @@ public class KnightsAi : MonoBehaviour
             facingRight = false; 
         }
 
-        scale.x = Mathf.Abs(scale.x) * (facingRight ? -1 : 1);
+        scale.x = Mathf.Abs(scale.x) * -1 * (facingRight ? 1 : -1);
         transform.localScale = scale;
     }
 
-    void DecideTeam()
+    public virtual void DecideTeam()
     {
         if(gameObject.tag == "blueTeam")
         {
@@ -130,7 +130,7 @@ public class KnightsAi : MonoBehaviour
             enemyteam = "blueTeam";
         }
     }
-    void searchEnemy()
+    public virtual void  searchEnemy()
     {
         enemy = GameObject.FindGameObjectsWithTag(enemyteam);
         GameObject firstEnemyList = enemy[0];
@@ -148,7 +148,7 @@ public class KnightsAi : MonoBehaviour
         target = enemy[0];
     }
 
-    public void Attack()
+    public virtual void Attack()
     {
 
         haveAttacked = true;
@@ -170,7 +170,7 @@ public class KnightsAi : MonoBehaviour
 
     }
 
-    public void TakeDamage(int x)
+    public virtual void TakeDamage(int x)
     {
         Debug.Log("slå");
         curentHp = curentHp - x;
