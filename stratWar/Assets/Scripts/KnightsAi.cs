@@ -27,7 +27,7 @@ public class KnightsAi : MonoBehaviour
     protected private float cd;
 
     [SerializeField] protected private Animator animator;
-
+    public Rigidbody2D PlayerVec2;
 
 
     // set all the base stats
@@ -63,13 +63,7 @@ public class KnightsAi : MonoBehaviour
 
         }
 
-        if (gameObject.tag == "Dead")
-        {
-            animator.SetBool("targetfound", false);
-            animator.SetBool("attack", false);
-            animator.SetBool("die", true);
-            isAlive = false;
-        }
+        isDead();
     }
 
     public virtual  void FixedUpdate()
@@ -77,7 +71,7 @@ public class KnightsAi : MonoBehaviour
 
         if (isAlive == true)
         {
-            if (Vector3.Distance(gameObject.transform.position, target.transform.position) < range)
+            if (Vector2.Distance(gameObject.transform.position, target.transform.position) < range)
             {
                 animator.SetBool("targetfound", false);
                 Attack();
@@ -87,7 +81,7 @@ public class KnightsAi : MonoBehaviour
             else
             {
                 animator.SetBool("attack", false);
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.fixedDeltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.fixedDeltaTime);
                 if (speed > 0)
                 {
                     animator.SetBool("targetfound", true);
@@ -100,6 +94,16 @@ public class KnightsAi : MonoBehaviour
             }
         }
 
+    }
+    public virtual void isDead()
+    {
+        if (gameObject.tag == "Dead")
+        {
+            animator.SetBool("targetfound", false);
+            animator.SetBool("attack", false);
+            animator.SetBool("die", true);
+            isAlive = false;
+        }
     }
     
     public virtual void decideDirection()
@@ -174,5 +178,10 @@ public class KnightsAi : MonoBehaviour
     {
         Debug.Log("slå");
         curentHp = curentHp - x;
+    }
+
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        speed = 0;
     }
 }
