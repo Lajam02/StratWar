@@ -6,8 +6,8 @@ public class KnightsAi : MonoBehaviour
 {
 
     //base info
-     [SerializeField] protected private int speed;
-    [SerializeField] protected private float range;
+    [SerializeField] protected private int speed;
+    [SerializeField] protected private float meleeRange;
     [SerializeField] protected private string enemyteam;
     public int damage;
     protected private bool isAlive;
@@ -20,7 +20,7 @@ public class KnightsAi : MonoBehaviour
 
     //Hp
     [SerializeField] protected private int maxHp;
-    [SerializeField]  protected private int curentHp;
+    [SerializeField] protected private int curentHp;
 
     // cooldown  
     [SerializeField] protected private float cdTimer;
@@ -28,6 +28,12 @@ public class KnightsAi : MonoBehaviour
 
     [SerializeField] protected private Animator animator;
     public Rigidbody2D PlayerVec2;
+
+    // statusCondition;
+    [SerializeField] protected private bool isSpored;
+    protected private int sporeDamage = 10;
+    [SerializeField] protected private float interval = 1.0f;
+    [SerializeField] protected private float duration = 10.0f;
 
 
     // set all the base stats
@@ -39,18 +45,20 @@ public class KnightsAi : MonoBehaviour
         searchEnemy();
         haveAttacked = false;
         cd = cdTimer;
+        isSpored = false;
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        
+
         if (curentHp <= 0)
         {
             gameObject.tag = "Dead";
             //Destroy(gameObject);
         }
-        else {
+        else
+        {
             decideDirection();
         }
 
@@ -62,16 +70,18 @@ public class KnightsAi : MonoBehaviour
             searchEnemy();
 
         }
-
-        isDead();
+        if (gameObject.tag == "Dead" && isAlive == true)
+        {
+            isDead();
+        }
     }
 
-    public virtual  void FixedUpdate()
+    public virtual void FixedUpdate()
     {
 
         if (isAlive == true)
         {
-            if (Vector2.Distance(gameObject.transform.position, target.transform.position) < range)
+            if (Vector2.Distance(gameObject.transform.position, target.transform.position) < meleeRange)
             {
                 animator.SetBool("targetfound", false);
                 Attack();
@@ -94,27 +104,32 @@ public class KnightsAi : MonoBehaviour
             }
         }
 
+        if (isSpored == true)
+        {
+
+        }
+
     }
     public virtual void isDead()
     {
-        if (gameObject.tag == "Dead")
-        {
-            animator.SetBool("targetfound", false);
-            animator.SetBool("attack", false);
-            animator.SetBool("die", true);
-            isAlive = false;
-        }
+        Debug.Log("är död");
+        animator.SetBool("targetfound", false);
+        animator.SetBool("attack", false);
+        animator.SetBool("die", true);
+        isAlive = false;
+
     }
-    
+
     public virtual void decideDirection()
     {
         Vector3 scale = transform.localScale;
-        if (target.transform.position.x < gameObject.transform.position.x) {
+        if (target.transform.position.x < gameObject.transform.position.x)
+        {
             facingRight = true;
-                }
+        }
         else
         {
-            facingRight = false; 
+            facingRight = false;
         }
 
         scale.x = Mathf.Abs(scale.x) * -1 * (facingRight ? 1 : -1);
@@ -123,18 +138,18 @@ public class KnightsAi : MonoBehaviour
 
     public virtual void DecideTeam()
     {
-        if(gameObject.tag == "blueTeam")
+        if (gameObject.tag == "blueTeam")
         {
-            
+
             enemyteam = "redTeam";
         }
-        else if(gameObject.tag == "redTeam")
+        else if (gameObject.tag == "redTeam")
         {
-            
+
             enemyteam = "blueTeam";
         }
     }
-    public virtual void  searchEnemy()
+    public virtual void searchEnemy()
     {
         enemy = GameObject.FindGameObjectsWithTag(enemyteam);
         GameObject firstEnemyList = enemy[0];
@@ -168,8 +183,6 @@ public class KnightsAi : MonoBehaviour
                 haveAttacked = false;
 
             }
-
-
         }
 
     }
@@ -184,4 +197,24 @@ public class KnightsAi : MonoBehaviour
     {
         speed = 0;
     }
+
+    public virtual void Sporedcondition()
+    {
+
+        InvokeRepeating("Tickdamage", 0.0f, interval);
+        Invoke("StopRepeating", duration);
+    }
+
+    private void Tickdamage()
+    {
+        curentHp = curentHp - sporeDamage;
+        Debug.Log("händer varje sekund");
+    }
+
+    private void StopRepeating()
+    {
+        CancelInvoke("Tickdamage");
+        Debug.Log("Upprepning avbryten efter " + duration + "sekunder");
+    }
+
 }
