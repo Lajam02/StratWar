@@ -37,9 +37,9 @@ public class Testfield : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == enemy) {
+       // if(col.gameObject.tag == enemy) {
             col.gameObject.GetComponent<KnightsAi>().Sporedcondition();
-        }
+        //}
     }
 
 

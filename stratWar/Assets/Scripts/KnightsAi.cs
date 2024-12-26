@@ -195,12 +195,12 @@ public class KnightsAi : MonoBehaviour
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        speed = 0;
+   
     }
 
     public virtual void Sporedcondition()
     {
-
+        Debug.Log("sporad");
         InvokeRepeating("Tickdamage", 0.0f, interval);
         Invoke("StopRepeating", duration);
     }

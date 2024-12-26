@@ -6,7 +6,7 @@ public class shrooms : KnightsAi
 {
     [SerializeField] private GameObject spore;
     private GameObject mySporeRain;
-    public bool UwU;
+    public bool isBlue;
 
     // the ranged attack
     [SerializeField] private float maxRange;
@@ -16,15 +16,16 @@ public class shrooms : KnightsAi
     [SerializeField] private float rangedAttackCd;
     public Rigidbody2D rb;
     public float projecilSpeed;
-    private float lastSpawnTime;
+     [SerializeField] private float lastSpawnTime;
     public Vector2 direction;
- 
+    public Transform firePos;
+
 
     public override void Start()
     {
         base.Start();
 
-        lastSpawnTime = rangedAttackCd;       
+        lastSpawnTime = rangedAttackCd;
     }
 
     public override void Update()
@@ -40,13 +41,13 @@ public class shrooms : KnightsAi
         mySporeRain = Instantiate(spore, gameObject.transform.position, Quaternion.identity);
         if (enemyteam == "redTeam")
         {
-            UwU = true;
+            isBlue = true;
         }
         else if (enemyteam == "blueTeam")
         {
-            UwU = false;
+            isBlue = false;
         }
-        mySporeRain.GetComponent<Testfield>().Findenemy(UwU);
+        mySporeRain.GetComponent<Testfield>().Findenemy(isBlue);
     }
 
     private void Rangedattack()
@@ -55,23 +56,32 @@ public class shrooms : KnightsAi
         {
             speed = 0;
 
-            
-            
-                rangedAttackCd -= Time.fixedDeltaTime;
-                if (rangedAttackCd <= 0)
-                {
-                direction = (target.transform.position - transform.position).normalized;
-                CurrentSporeCloud = Instantiate(sporeCloud, transform.position, Quaternion.identity);
-                rb = CurrentSporeCloud.GetComponent<Rigidbody2D>();
-                rb.velocity = direction * projecilSpeed;
-                rangedAttackCd = lastSpawnTime;
 
-                }
+
+            rangedAttackCd -= Time.fixedDeltaTime;
+            if (rangedAttackCd <= 0)
+            {
+                ShootSporeCloud();
+                rangedAttackCd = Time.fixedTime + 1f / lastSpawnTime; // Ställ in nästa tidpunkt för skott
+            }
 
         }
         else if ((Vector2.Distance(gameObject.transform.position, target.transform.position) > maxRange) || (Vector2.Distance(gameObject.transform.position, target.transform.position) < minRange))
         {
             speed = 3;
+        }
+    }
+
+    void ShootSporeCloud()
+    {
+        GameObject projectile = Instantiate(sporeCloud, firePos.position, firePos.rotation);
+
+        // Lägg till fysik (Rigidbody) om det inte redan finns
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            // Skjut projektilen med en kraft i den riktning NPC:n pekar (forward)
+            rb.AddForce(firePos.right * projecilSpeed, ForceMode2D.Impulse);
         }
     }
 

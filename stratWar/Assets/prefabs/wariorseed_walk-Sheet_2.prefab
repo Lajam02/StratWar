@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8660278694777170179}
   - component: {fileID: 8660278694777170176}
   - component: {fileID: 8660278694777170177}
-  - component: {fileID: 8660278694777170190}
   - component: {fileID: 8660278694777170178}
   m_Layer: 0
   m_Name: wariorseed_walk-Sheet_2
@@ -108,36 +107,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8660278694777170190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8660278694777170191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7848e7f62f86c2f48a233ae0c3aa8a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  meleeRange: 2
-  enemyteam: 
-  damage: 2
-  facingRight: 0
-  enemy: []
-  maxHp: 30
-  curentHp: 0
-  cdTimer: 1
-  animator: {fileID: 8660278694777170177}
-  PlayerVec2: {fileID: 0}
-  isSpored: 0
-  interval: 1
-  duration: 10
-  xp: 2
-  xpLimit: 100
-  megaDmg: 50
-  spsAtt: 0
 --- !u!70 &8660278694777170178
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
