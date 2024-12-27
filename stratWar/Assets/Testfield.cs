@@ -11,6 +11,13 @@ public class Testfield : MonoBehaviour
     public bool grog;
     [SerializeField] private string enemy;
     public float fielDuration;
+
+    
+    public float tickInterval;
+    public float duration;
+    public int tickDamage;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,8 +44,9 @@ public class Testfield : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-       // if(col.gameObject.tag == enemy) {
-            col.gameObject.GetComponent<KnightsAi>().Sporedcondition();
+        // if(col.gameObject.tag == enemy) {
+        Debug.Log(col.gameObject);
+            col.gameObject.GetComponent<KnightsAi>().Sporedcondition(tickInterval,duration,tickDamage);
         //}
     }
 

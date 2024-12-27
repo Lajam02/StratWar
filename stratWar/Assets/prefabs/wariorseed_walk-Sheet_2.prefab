@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8660278694777170176}
   - component: {fileID: 8660278694777170177}
   - component: {fileID: 8660278694777170178}
+  - component: {fileID: 2032127558}
   m_Layer: 0
   m_Name: wariorseed_walk-Sheet_2
-  m_TagString: blueTeam
+  m_TagString: redTeam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,9 +118,37 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.071584225, y: -0.07158363}
   m_Size: {x: 1.1366329, y: 1.7808897}
   m_Direction: 0
+--- !u!114 &2032127558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8660278694777170191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125401bdf187fd149863f2ec4db11b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  meleeRange: 1.5
+  enemyteam: 
+  damage: 60
+  facingRight: 0
+  enemy: []
+  maxHp: 135
+  curentHp: 0
+  cdTimer: 1
+  animator: {fileID: 8660278694777170177}
+  PlayerVec2: {fileID: 0}
+  isSpored: 0
+  xp: 0
+  xpLimit: 65
+  megaDmg: 50
+  spsAtt: 0

@@ -107,6 +107,9 @@ MonoBehaviour:
   grog: 0
   enemy: 
   fielDuration: 6
+  tickInterval: 1.4
+  duration: 6
+  tickDamage: 5
 --- !u!50 &137177765679198288
 Rigidbody2D:
   serializedVersion: 4

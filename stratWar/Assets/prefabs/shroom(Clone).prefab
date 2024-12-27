@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 942065525}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShotPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942065524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.84, y: 0, z: 0}
+  m_LocalPosition: {x: 1.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4747994226908344828}
   - component: {fileID: 8132297343465225896}
   - component: {fileID: 4468668585435055498}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: shroom(Clone)
   m_TagString: redTeam
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   speed: 1
   meleeRange: 0.5
   enemyteam: 
-  damage: 3
+  damage: 15
   facingRight: 0
   enemy: []
   maxHp: 90
@@ -144,16 +144,15 @@ MonoBehaviour:
   animator: {fileID: 4747994226908344828}
   PlayerVec2: {fileID: 0}
   isSpored: 0
-  interval: 1
-  duration: 10
   spore: {fileID: 137177765679198290, guid: dcf5c1627051c2642926471a4c023d33, type: 3}
   isBlue: 0
+  tempSpeed: 0
   maxRange: 8
   minRange: 1
   sporeCloud: {fileID: 4321083956017291295, guid: e1d73852270d3b74383f18bee72e6818, type: 3}
   rangedAttackCd: 10
   rb: {fileID: 0}
-  projecilSpeed: 5
+  projecilSpeed: 7
   lastSpawnTime: 0
   direction: {x: 0, y: 0}
   firePos: {fileID: 942065525}

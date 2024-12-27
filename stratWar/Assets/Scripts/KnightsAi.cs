@@ -32,8 +32,7 @@ public class KnightsAi : MonoBehaviour
     // statusCondition;
     [SerializeField] protected private bool isSpored;
     protected private int sporeDamage = 10;
-    [SerializeField] protected private float interval = 1.0f;
-    [SerializeField] protected private float duration = 10.0f;
+
 
 
     // set all the base stats
@@ -198,8 +197,9 @@ public class KnightsAi : MonoBehaviour
    
     }
 
-    public virtual void Sporedcondition()
+    public virtual void Sporedcondition(float interval,float duration, int dmg)
     {
+        sporeDamage = dmg;
         Debug.Log("sporad");
         InvokeRepeating("Tickdamage", 0.0f, interval);
         Invoke("StopRepeating", duration);
@@ -214,7 +214,7 @@ public class KnightsAi : MonoBehaviour
     private void StopRepeating()
     {
         CancelInvoke("Tickdamage");
-        Debug.Log("Upprepning avbryten efter " + duration + "sekunder");
+        Debug.Log("Upprepning avbryten efter " + "sekunder");
     }
 
 }

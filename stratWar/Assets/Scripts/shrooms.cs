@@ -7,7 +7,7 @@ public class shrooms : KnightsAi
     [SerializeField] private GameObject spore;
     private GameObject mySporeRain;
     public bool isBlue;
-
+    public int tempSpeed;
     // the ranged attack
     [SerializeField] private float maxRange;
     [SerializeField] private float minRange;
@@ -24,7 +24,7 @@ public class shrooms : KnightsAi
     public override void Start()
     {
         base.Start();
-
+        tempSpeed = speed;
         lastSpawnTime = rangedAttackCd;
     }
 
@@ -62,20 +62,20 @@ public class shrooms : KnightsAi
             if (rangedAttackCd <= 0)
             {
                 ShootSporeCloud();
-                rangedAttackCd = Time.fixedTime + 1f / lastSpawnTime; // Ställ in nästa tidpunkt för skott
+                rangedAttackCd = lastSpawnTime; // Ställ in nästa tidpunkt för skott
             }
 
         }
         else if ((Vector2.Distance(gameObject.transform.position, target.transform.position) > maxRange) || (Vector2.Distance(gameObject.transform.position, target.transform.position) < minRange))
         {
-            speed = 3;
+               speed = tempSpeed;
         }
     }
 
     void ShootSporeCloud()
     {
         GameObject projectile = Instantiate(sporeCloud, firePos.position, firePos.rotation);
-
+        projectile.GetComponent<Testfield>().Findenemy(isBlue);
         // Lägg till fysik (Rigidbody) om det inte redan finns
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)
