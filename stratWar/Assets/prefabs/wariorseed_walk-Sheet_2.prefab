@@ -139,16 +139,16 @@ MonoBehaviour:
   speed: 1
   meleeRange: 1.5
   enemyteam: 
-  damage: 60
+  damage: 45
   facingRight: 0
   enemy: []
-  maxHp: 135
+  maxHp: 105
   curentHp: 0
-  cdTimer: 1
+  cdTimer: 1.8
   animator: {fileID: 8660278694777170177}
   PlayerVec2: {fileID: 0}
   isSpored: 0
   xp: 0
-  xpLimit: 65
-  megaDmg: 50
+  xpLimit: 40
+  megaDmg: 60
   spsAtt: 0

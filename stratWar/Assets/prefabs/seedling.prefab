@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5476368433991182211}
   m_Layer: 7
   m_Name: seedling
-  m_TagString: redTeam
+  m_TagString: blueTeam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  meleeRange: 0
+  meleeRange: 1
   enemyteam: 
-  damage: 2
+  damage: 15
   facingRight: 0
   enemy: []
   maxHp: 90
@@ -112,8 +112,6 @@ MonoBehaviour:
   animator: {fileID: 5476368433991182215}
   PlayerVec2: {fileID: 0}
   isSpored: 0
-  interval: 1
-  duration: 10
 --- !u!95 &5476368433991182215
 Animator:
   serializedVersion: 5
@@ -145,7 +143,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -181,4 +179,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

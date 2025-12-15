@@ -106,9 +106,9 @@ MonoBehaviour:
   rb: {fileID: 137177765679198288}
   grog: 0
   enemy: 
-  fielDuration: 6
+  fielDuration: 7.5
   tickInterval: 1.4
-  duration: 6
+  duration: 7.5
   tickDamage: 5
 --- !u!50 &137177765679198288
 Rigidbody2D:
